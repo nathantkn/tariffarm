@@ -25,7 +25,13 @@ export default function Result() {
   const extractTariffRows = () => {
     if (!parsedResult) return [];
 
-    const countries = parsedResult["country of origin"]?.split(',') || [];
+    const countryValue = parsedResult["country of origin"];
+    const countries =
+      typeof countryValue === "string"
+        ? countryValue.split(",").map(s => s.trim())
+        : Array.isArray(countryValue)
+          ? countryValue
+          : [];
     const tariffs = parsedResult["tariff percentage from all three country"]
       ?.split(',')
       .map(str => str.trim()) || [];
@@ -41,12 +47,12 @@ export default function Result() {
       const response = await fetch("http://localhost:5050/api/run-bfs", {
         method: "POST",
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log("✅ BFS Result:", data.stdout);
-        localStorage.setItem("bfsOutput", data.stdout); // Optional: pass to next page
-        router.push("/loading"); // 🔁 Navigate to animation page
+        localStorage.setItem("bfsOutput", data.stdout);
+        router.push("/loading");
       } else {
         const errorData = await response.json();
         console.error("❌ BFS failed:", errorData);
