@@ -33,6 +33,17 @@ export default function GlobePage() {
   }, []);
 
   useEffect(() => {
+    // If the amCharts library is missing, reload the page once.
+    if (!window.am5) {
+      if (!sessionStorage.getItem("globePageReloaded")) {
+        sessionStorage.setItem("globePageReloaded", "true");
+        window.location.reload();
+        return; // Stop further initialization until reload.
+      }
+    }
+  }, [routes]);
+
+  useEffect(() => {
     if (routes.length === 0) return;
     // Ensure that the amCharts libraries are available globally.
     if (!window.am5) {
