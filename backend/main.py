@@ -2,12 +2,17 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import json
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 API_KEY = "AIzaSyBi3S6jL-cZPw6YgWHnyZ68jgEKqhMceRs"
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+
+
+with open(os.path.join(os.path.dirname(__file__), "tariff.json"), 'r') as f:
+    tariff_data = json.load(f)
 
 @app.route('/api/gemini', methods=['POST'])
 def call_gemini_api():
@@ -21,32 +26,32 @@ def call_gemini_api():
             return jsonify({'error': 'Query is required'}), 400
 
         # Example static tariff data (replace with dynamic logic later if needed)
-        tariff_data = {
-            "India": 10.5,
-            "Mexico": 5.2,
-            "Brazil": 12.8
-        }
+        # tariff_data = {
+        #     "India": 10.5,
+        #     "Mexico": 5.2,
+        #     "Brazil": 12.8
+        # }
 
         # Construct the full prompt
         full_prompt = f"""
-Based on the following input: "{user_query}", calculate the total price for importing goods following reciprocal tariffs.
-Use the following tariff data for accurate calculations:
-{json.dumps(tariff_data, indent=4)}
-Use this JSON schema for the output:
-{{
-    "query1": {{
-        "food": str,
-        "units in kilogram": int,
-        "country of origin": str,
-        "tariff percentage from country of origin": float,
-        "market price in origin country per kilogram (USD)": float,
-        "total price of importing(USD)": float
-    }}
-}}
-The total price is calculated as:
-(market price per kilogram * units in kilogram) + (tariff percentage * market price per unit * units / 100).
-Return the result in JSON format.
-"""
+        Based on the following input: "{user_query}", calculate the total price for importing goods following reciprocal tariffs.
+        Use the following tariff data for accurate calculations:
+        {json.dumps(tariff_data, indent=4)}
+        Use this JSON schema for the output:
+        {{
+            "query1": {{
+                "food": str,
+                "units in kilogram": int,
+                "country of origin": str,
+                "tariff percentage from country of origin": float,
+                "market price in origin country per kilogram (USD)": float,
+                "total price of importing(USD)": float
+            }}
+        }}
+        The total price is calculated as:
+        (market price per kilogram * units in kilogram) + (tariff percentage * market price per unit * units / 100).
+        Return the result in JSON format.
+        """
 
         headers = {
             "Content-Type": "application/json"

@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import '../globals.css';
 
 export default function Home() {
@@ -26,11 +27,11 @@ export default function Home() {
       });
 
       const data = await res.json();
-      
+
       if (res.ok) {
         // debugging purposes
         // alert('Gemini Response:\n' + data.result);
-        
+
         // Navigate to /results page and pass JSON as a string in query
         // router.push(`/results?data=${encodeURIComponent(JSON.stringify(data.result))}`);
 
@@ -49,29 +50,39 @@ export default function Home() {
 
   return (
     <div style={styles.body}>
-      <header style={styles.header}>
-        <img src="/logo.svg" alt="App Logo" height="42" />
-      </header>
+
 
       <main style={styles.container}>
+        <header class="text-center mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-green-900">App Title</h1>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            helping you find the best prices for your food
+          </p>
+        </header>
+
+
+        <div class="max-w-2xl mx-auto mb-16">
+        <div class="bg-white p-6 rounded-lg shadow-md">
         <div style={styles.formWrapper}>
-          <label htmlFor="query">What produce would you like to buy?</label>
+          <label htmlFor="query">Enter produce name or HS code, followed by quantity and location of origin.</label>
           <form onSubmit={handleSubmit} style={{ display: 'flex', marginTop: '0.5rem' }}>
             <input
               type="text"
               id="query"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="I'm importing 100 kilograms of avocado from Mexico"
+              placeholder="e.g.100 kilograms of avocado from Mexico"
+              class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
               required
-              style={styles.input}
             />
-            <button type="submit" style={styles.button}>Search</button>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-r-md hover:bg-blue-700 transition">Search</button>
           </form>
+        </div>
+        </div>
         </div>
 
         <section>
-          <h2 style={{ textAlign: 'center' }}>Trending Commodities</h2>
+          <h1 style={{ textAlign: 'center', paddingBottom: '1rem' }}>Trending Commodities</h1>
           <div style={styles.trending}>
             {trending.map((item, idx) => (
               <div key={idx} style={styles.card}>
@@ -84,7 +95,6 @@ export default function Home() {
       </main>
 
       <footer style={styles.footer}>
-        Powered by AgriIntel · <a href="https://nextjs.org" target="_blank">Learn Next.js</a>
       </footer>
     </div>
   );
@@ -102,7 +112,8 @@ const styles = {
   },
   header: {
     textAlign: 'center',
-    padding: '1rem'
+    padding: '1rem',
+    fontSize: '1.5rem',
   },
   container: {
     flex: 1,
@@ -110,11 +121,13 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '2rem'
+    gap: '3rem'
   },
   formWrapper: {
     maxWidth: '500px',
-    width: '100%'
+    width: '100%',
+    marginBottom: '2rem', // Add space below the form
+    alignItems: 'flex-start'
   },
   input: {
     flex: 1,
@@ -136,16 +149,22 @@ const styles = {
   trending: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-    gap: '1rem',
+    gap: '2rem',
     maxWidth: '800px',
     width: '100%'
   },
   card: {
     backgroundColor: 'white',
     borderRadius: '12px',
-    padding: '1rem',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-    textAlign: 'center'
+    padding: '2rem', // Increase padding for larger content
+    boxShadow: '0 4px 15px rgba(76, 74, 74, 0.1)', // Slightly stronger shadow for emphasis
+    textAlign: 'center',
+    fontSize: '1.2rem', // Increase font size for card content
+    height: '150px', // Optional: Set a fixed height for uniformity
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   muted: {
     color: '#666',
