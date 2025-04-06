@@ -32,6 +32,7 @@ export default function Home() {
         // router.push(`/results?data=${encodeURIComponent(JSON.stringify(data.result))}`);
 
         //BACKUP: use local storage to store JSON data
+        console.log('Saving data to localStorage:', data.result); // Debugging line
         localStorage.setItem('geminiResponse', JSON.stringify(data.result));
         router.push('/result');
 
