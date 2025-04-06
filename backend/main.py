@@ -16,6 +16,9 @@ GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0
 with open(os.path.join(os.path.dirname(__file__), "tariff.json"), 'r') as f:
     tariff_data = json.load(f)
 
+# Ensure the output directory exists
+os.makedirs("output", exist_ok=True)
+
 @app.route('/api/gemini', methods=['POST'])
 def call_gemini_api():
     print("🚀 Flask: /api/gemini route was called!")
@@ -106,6 +109,8 @@ def call_gemini_api():
         if response.status_code == 200:
             output = response.json()
             final_text = output['candidates'][0]['content']['parts'][0]['text']
+            with open("output/gemini_output.json", "w") as file:
+                json.dump({"result": final_text}, file, indent=4)
             return jsonify({'result': final_text})
         else:
             return jsonify({

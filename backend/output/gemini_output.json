@@ -1,0 +1,3 @@
+{
+    "result": "```json\n{\n    \"query1\": {\n        \"food\": \"bananas\",\n        \"units in kilogram\": 100,\n        \"country of origin\": \"Guatemala\",\n        \"tariff percentage from country of origin\": 10.0,\n        \"market price in origin country per kilogram (USD)\": 0.50,\n        \"total price of importing(USD)\": 55.0\n    }\n}\n```"
+}
