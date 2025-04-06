@@ -1,0 +1,1240 @@
+{
+    "USA": {
+        "neighbors": [
+            {
+                "country": "Canada",
+                "tax": 0,
+                "time": 3
+            },
+            {
+                "country": "Mexico", 
+                "tax": 0,
+                "time": 7
+            }
+        ],
+        "tariff": 0
+    },
+    "Canada": {
+        "neighbors": [
+            {
+                "country": "USA",
+                "tax": 0,
+                "time": 3
+            }
+        ],
+        "tariff": 0
+    },
+    "Slovakia": {
+        "neighbors": [
+          { "country": "Austria", "tax": 20, "time": 2 },
+          { "country": "Czech Republic", "tax": 10, "time": 2 },
+          { "country": "Hungary", "tax": 15, "time": 2 }
+        ],
+        "tariff": 10
+      },
+    "Mexico": {
+        "neighbors": [
+            {
+                "country": "USA",
+                "tax": 0,
+                "time": 7
+            },
+            {
+                "country": "Guatemala",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "Belize",
+                "tax": 10,
+                "time": 3
+            }
+        ],
+        "tariff": 0
+    },
+    "Germany": {
+        "neighbors": [
+            {
+                "country": "France",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Poland",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Netherlands",
+                "tax": 20,
+                "time": 1
+            },
+            {
+                "country": "Belgium",
+                "tax": 20,
+                "time": 1
+            },
+            {
+                "country": "Switzerland",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Austria",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Czech Republic",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Denmark",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Luxembourg",
+                "tax": 20,
+                "time": 1
+            }
+        ],
+        "tariff": 20
+    },
+    "France": {
+        "neighbors": [
+            {
+                "country": "Germany",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Spain",
+                "tax": 20,
+                "time": 3
+            },
+            {
+                "country": "Italy",
+                "tax": 20,
+                "time": 3
+            },
+            {
+                "country": "Belgium",
+                "tax": 20,
+                "time": 1
+            },
+            {
+                "country": "Switzerland",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Luxembourg",
+                "tax": 20,
+                "time": 1
+            }
+        ],
+        "tariff": 20
+    },
+    "India": {
+        "neighbors": [
+            {
+                "country": "China",
+                "tax": 34,
+                "time": 5
+            },
+            {
+                "country": "Pakistan",
+                "tax": 30,
+                "time": 4
+            },
+            {
+                "country": "Nepal",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Bangladesh",
+                "tax": 37,
+                "time": 2
+            },
+            {
+                "country": "Bhutan",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Myanmar",
+                "tax": 45,
+                "time": 4
+            }
+        ],
+        "tariff": 27
+    },
+    "China": {
+        "neighbors": [
+            {
+                "country": "India",
+                "tax": 27,
+                "time": 5
+            },
+            {
+                "country": "Russia",
+                "tax": 20,
+                "time": 6
+            },
+            {
+                "country": "Pakistan",
+                "tax": 30,
+                "time": 5
+            },
+            {
+                "country": "Vietnam",
+                "tax": 46,
+                "time": 3
+            },
+            {
+                "country": "Myanmar",
+                "tax": 45,
+                "time": 4
+            },
+            {
+                "country": "Kazakhstan",
+                "tax": 27,
+                "time": 4
+            }
+        ],
+        "tariff": 34
+    },
+    "Russia": {
+        "neighbors": [
+            {
+                "country": "China",
+                "tax": 34,
+                "time": 6
+            },
+            {
+                "country": "Kazakhstan",
+                "tax": 27,
+                "time": 4
+            },
+            {
+                "country": "Ukraine",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Poland",
+                "tax": 20,
+                "time": 5
+            },
+            {
+                "country": "Latvia",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Estonia",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 20
+    },
+    "Brazil": {
+        "neighbors": [
+            {
+                "country": "Argentina",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Bolivia",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "Colombia",
+                "tax": 10,
+                "time": 5
+            },
+            {
+                "country": "Peru",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "Venezuela",
+                "tax": 15,
+                "time": 3
+            }
+        ],
+        "tariff": 10
+    },
+    "Argentina": {
+        "neighbors": [
+            {
+                "country": "Brazil",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Chile",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Paraguay",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Bolivia",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Uruguay",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 10
+    },
+    "Indonesia": {
+        "neighbors": [
+            {
+                "country": "Malaysia",
+                "tax": 24,
+                "time": 2
+            },
+            {
+                "country": "Papua New Guinea",
+                "tax": 10,
+                "time": 5
+            }
+        ],
+        "tariff": 32
+    },
+    "Australia": {
+        "neighbors": [],
+        "tariff": 10
+    },
+    "Turkey": {
+        "neighbors": [
+            {
+                "country": "Greece",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Bulgaria",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Georgia",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Armenia",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Iran",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "Syria",
+                "tax": 41,
+                "time": 5
+            },
+            {
+                "country": "Iraq",
+                "tax": 39,
+                "time": 5
+            }
+        ],
+        "tariff": 10
+    },
+    "Spain": {
+        "neighbors": [
+            {
+                "country": "France",
+                "tax": 20,
+                "time": 3
+            },
+            {
+                "country": "Portugal",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Gibraltar",
+                "tax": 10,
+                "time": 1
+            }
+        ],
+        "tariff": 20
+    },
+    "Italy": {
+        "neighbors": [
+            {
+                "country": "France",
+                "tax": 20,
+                "time": 3
+            },
+            {
+                "country": "Switzerland",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Austria",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Slovenia",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 20
+    },
+    "Poland": {
+        "neighbors": [
+            {
+                "country": "Germany",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Czech Republic",
+                "tax": 10,
+                "time": 1
+            },
+            {
+                "country": "Slovakia",
+                "tax": 10,
+                "time": 1
+            },
+            {
+                "country": "Ukraine",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Belarus",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Russia",
+                "tax": 20,
+                "time": 5
+            },
+            {
+                "country": "Lithuania",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 20
+    },
+    "South Korea": {
+        "neighbors": [
+            {
+                "country": "North Korea",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 26
+    },
+    "Saudi Arabia": {
+        "neighbors": [
+            {
+                "country": "Jordan",
+                "tax": 20,
+                "time": 3
+            },
+            {
+                "country": "Iraq",
+                "tax": 39,
+                "time": 4
+            },
+            {
+                "country": "Kuwait",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Qatar",
+                "tax": 10,
+                "time": 1
+            },
+            {
+                "country": "United Arab Emirates",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Oman",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Yemen",
+                "tax": 10,
+                "time": 4
+            }
+        ],
+        "tariff": 10
+    },
+    "Thailand": {
+        "neighbors": [
+            {
+                "country": "Myanmar",
+                "tax": 45,
+                "time": 3
+            },
+            {
+                "country": "Laos",
+                "tax": 48,
+                "time": 2
+            },
+            {
+                "country": "Cambodia",
+                "tax": 49,
+                "time": 2
+            },
+            {
+                "country": "Malaysia",
+                "tax": 24,
+                "time": 2
+            }
+        ],
+        "tariff": 37
+    },
+    "United Kingdom": {
+        "neighbors": [],
+        "tariff": 10
+    },
+    "Vietnam": {
+        "neighbors": [
+            {
+                "country": "China",
+                "tax": 34,
+                "time": 3
+            },
+            {
+                "country": "Laos",
+                "tax": 48,
+                "time": 2
+            },
+            {
+                "country": "Cambodia",
+                "tax": 49,
+                "time": 2
+            }
+        ],
+        "tariff": 46
+    },
+    "Iran": {
+        "neighbors": [
+            {
+                "country": "Turkey",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "Iraq",
+                "tax": 39,
+                "time": 3
+            },
+            {
+                "country": "Afghanistan",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Pakistan",
+                "tax": 30,
+                "time": 4
+            },
+            {
+                "country": "Turkmenistan",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Armenia",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Azerbaijan",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 10
+    },
+    "Pakistan": {
+        "neighbors": [
+            {
+                "country": "India",
+                "tax": 27,
+                "time": 4
+            },
+            {
+                "country": "Afghanistan",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Iran",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "China",
+                "tax": 34,
+                "time": 5
+            }
+        ],
+        "tariff": 30
+    },
+    "Egypt": {
+        "neighbors": [
+            {
+                "country": "Libya",
+                "tax": 31,
+                "time": 2
+            },
+            {
+                "country": "Sudan",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Israel",
+                "tax": 17,
+                "time": 2
+            }
+        ],
+        "tariff": 10
+    },
+    "Netherlands": {
+        "neighbors": [
+            {
+                "country": "Germany",
+                "tax": 20,
+                "time": 1
+            },
+            {
+                "country": "Belgium",
+                "tax": 20,
+                "time": 1
+            }
+        ],
+        "tariff": 20
+    },
+    "Bangladesh": {
+        "neighbors": [
+            {
+                "country": "India",
+                "tax": 27,
+                "time": 2
+            },
+            {
+                "country": "Myanmar",
+                "tax": 45,
+                "time": 3
+            }
+        ],
+        "tariff": 37
+    },
+    "Iraq": {
+        "neighbors": [
+            {
+                "country": "Iran",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Turkey",
+                "tax": 10,
+                "time": 5
+            },
+            {
+                "country": "Syria",
+                "tax": 41,
+                "time": 3
+            },
+            {
+                "country": "Jordan",
+                "tax": 20,
+                "time": 3
+            },
+            {
+                "country": "Saudi Arabia",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "Kuwait",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 39
+    },
+    "Philippines": {
+        "neighbors": [],
+        "tariff": 18
+    },
+    "Malaysia": {
+        "neighbors": [
+            {
+                "country": "Thailand",
+                "tax": 37,
+                "time": 2
+            },
+            {
+                "country": "Indonesia",
+                "tax": 32,
+                "time": 2
+            }
+        ],
+        "tariff": 24
+    },
+    "South Africa": {
+        "neighbors": [
+            {
+                "country": "Namibia",
+                "tax": 21,
+                "time": 3
+            },
+            {
+                "country": "Botswana",
+                "tax": 38,
+                "time": 2
+            },
+            {
+                "country": "Zimbabwe",
+                "tax": 18,
+                "time": 2
+            },
+            {
+                "country": "Mozambique",
+                "tax": 16,
+                "time": 3
+            },
+            {
+                "country": "Eswatini (Swaziland)",
+                "tax": 10,
+                "time": 1
+            },
+            {
+                "country": "Lesotho",
+                "tax": 50,
+                "time": 1
+            }
+        ],
+        "tariff": 31
+    },
+    "Ukraine": {
+        "neighbors": [
+            {
+                "country": "Poland",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Slovakia",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Hungary",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Romania",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Moldova",
+                "tax": 31,
+                "time": 2
+            },
+            {
+                "country": "Russia",
+                "tax": 20,
+                "time": 3
+            },
+            {
+                "country": "Belarus",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 10
+    },
+    "Colombia": {
+        "neighbors": [
+            {
+                "country": "Venezuela",
+                "tax": 15,
+                "time": 2
+            },
+            {
+                "country": "Brazil",
+                "tax": 10,
+                "time": 5
+            },
+            {
+                "country": "Peru",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "Ecuador",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Panama",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 10
+    },
+    "Chile": {
+        "neighbors": [
+            {
+                "country": "Argentina",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Bolivia",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Peru",
+                "tax": 10,
+                "time": 3
+            }
+        ],
+        "tariff": 10
+    },
+    "Algeria": {
+        "neighbors": [
+            {
+                "country": "Tunisia",
+                "tax": 28,
+                "time": 2
+            },
+            {
+                "country": "Libya",
+                "tax": 31,
+                "time": 2
+            },
+            {
+                "country": "Niger",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Mali",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Mauritania",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Morocco",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Western Sahara",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 30
+    },
+    "Norway": {
+        "neighbors": [
+            {
+                "country": "Sweden",
+                "tax": 20,
+                "time": 1
+            },
+            {
+                "country": "Finland",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Russia",
+                "tax": 20,
+                "time": 3
+            }
+        ],
+        "tariff": 16
+    },
+    "Peru": {
+        "neighbors": [
+            {
+                "country": "Ecuador",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Colombia",
+                "tax": 10,
+                "time": 4
+            },
+            {
+                "country": "Brazil",
+                "tax": 10,
+                "time": 5
+            },
+            {
+                "country": "Bolivia",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Chile",
+                "tax": 10,
+                "time": 3
+            }
+        ],
+        "tariff": 10
+    },
+    "Kazakhstan": {
+        "neighbors": [
+            {
+                "country": "Russia",
+                "tax": 20,
+                "time": 3
+            },
+            {
+                "country": "China",
+                "tax": 34,
+                "time": 4
+            },
+            {
+                "country": "Kyrgyzstan",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Uzbekistan",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Turkmenistan",
+                "tax": 10,
+                "time": 3
+            }
+        ],
+        "tariff": 27
+    },
+    "Morocco": {
+        "neighbors": [
+            {
+                "country": "Algeria",
+                "tax": 30,
+                "time": 2
+            },
+            {
+                "country": "Western Sahara",
+                "tax": 10,
+                "time": 1
+            },
+            {
+                "country": "Spain (Ceuta/Melilla)",
+                "tax": 20,
+                "time": 1
+            }
+        ],
+        "tariff": 10
+    },
+    "Uzbekistan": {
+        "neighbors": [
+            {
+                "country": "Kazakhstan",
+                "tax": 27,
+                "time": 2
+            },
+            {
+                "country": "Kyrgyzstan",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Tajikistan",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Afghanistan",
+                "tax": 10,
+                "time": 3
+            },
+            {
+                "country": "Turkmenistan",
+                "tax": 10,
+                "time": 3
+            }
+        ],
+        "tariff": 10
+    },
+    "Singapore": {
+        "neighbors": [
+            {
+                "country": "Malaysia",
+                "tax": 24,
+                "time": 1
+            }
+        ],
+        "tariff": 10
+    },
+    "Belgium": {
+        "neighbors": [
+            {
+                "country": "France",
+                "tax": 20,
+                "time": 1
+            },
+            {
+                "country": "Netherlands",
+                "tax": 20,
+                "time": 1
+            },
+            {
+                "country": "Germany",
+                "tax": 20,
+                "time": 1
+            },
+            {
+                "country": "Luxembourg",
+                "tax": 20,
+                "time": 1
+            }
+        ],
+        "tariff": 20
+    },
+    "Switzerland": {
+        "neighbors": [
+            {
+                "country": "France",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Germany",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Italy",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Austria",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Liechtenstein",
+                "tax": 37,
+                "time": 1
+            }
+        ],
+        "tariff": 32
+    },
+    "Austria": {
+        "neighbors": [
+            {
+                "country": "Germany",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Czech Republic",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Slovakia",
+                "tax": 10,
+                "time": 1
+            },
+            {
+                "country": "Hungary",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Slovenia",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Italy",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Switzerland",
+                "tax": 32,
+                "time": 2
+            }
+        ],
+        "tariff": 20
+    },
+    "Czech Republic": {
+        "neighbors": [
+            {
+                "country": "Germany",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Poland",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Austria",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Slovakia",
+                "tax": 10,
+                "time": 1
+            }
+        ],
+        "tariff": 10
+    },
+    "Sweden": {
+        "neighbors": [
+            {
+                "country": "Norway",
+                "tax": 16,
+                "time": 1
+            },
+            {
+                "country": "Finland",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 20
+    },
+    "Romania": {
+        "neighbors": [
+            {
+                "country": "Ukraine",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Moldova",
+                "tax": 31,
+                "time": 2
+            },
+            {
+                "country": "Bulgaria",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Serbia",
+                "tax": 38,
+                "time": 2
+            },
+            {
+                "country": "Hungary",
+                "tax": 10,
+                "time": 2
+            }
+        ],
+        "tariff": 10
+    },
+    "Denmark": {
+        "neighbors": [
+            {
+                "country": "Germany",
+                "tax": 20,
+                "time": 2
+            }
+        ],
+        "tariff": 20
+    },
+    "Portugal": {
+        "neighbors": [
+            {
+                "country": "Spain",
+                "tax": 20,
+                "time": 2
+            }
+        ],
+        "tariff": 10
+    },
+    "Israel": {
+        "neighbors": [
+            {
+                "country": "Egypt",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Jordan",
+                "tax": 20,
+                "time": 2
+            },
+            {
+                "country": "Lebanon",
+                "tax": 10,
+                "time": 2
+            },
+            {
+                "country": "Syria",
+                "tax": 41,
+                "time": 3
+            }
+        ],
+        "tariff": 17
+    },
+    "Luxembourg": {
+        "neighbors": [
+          { "country": "Belgium", "tax": 20, "time": 1 },
+          { "country": "Germany", "tax": 20, "time": 1 }
+        ],
+        "tariff": 10
+      }
+}
+

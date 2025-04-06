@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import json
+import os
+import subprocess
+
+
 
 app = Flask(__name__)
 CORS(app)
@@ -37,8 +41,8 @@ Use this JSON schema for the output:
     "query1": {{
         "food": str,
         "units in kilogram": int,
-        "country of origin": str,
-        "tariff percentage from country of origin": float,
+        "country of origin": str (display exact three countries),
+        "tariff percentage from all three country": str (list the tariff for each of the three countries listed above),
         "market price in origin country per kilogram (USD)": float,
         "total price of importing(USD)": float
     }}
@@ -85,6 +89,37 @@ Return the result in JSON format.
         print("SERVER ERROR:", str(e))
         traceback.print_exc()
         return jsonify({'error': 'Server exception', 'message': str(e)}), 500
+
+
+@app.route("/api/run-bfs", methods=["POST"])
+def run_bfs():
+    try:
+        bfs_path = os.path.join(os.path.dirname(__file__), "bfs.py")
+        print(f"🚀 Running BFS from path: {bfs_path}")
+
+        result = subprocess.run(["python3", bfs_path], capture_output=True, text=True)
+        
+        print("=== STDOUT ===")
+        print(result.stdout)
+        print("=== STDERR ===")
+        print(result.stderr)
+
+        if result.returncode != 0:
+            print("⚠️ BFS script failed with non-zero return code")
+            return jsonify({
+                "error": "Execution failed",
+                "stderr": result.stderr
+            }), 500
+
+        return jsonify({
+            "message": "BFS completed",
+            "stdout": result.stdout
+        }), 200
+
+    except Exception as e:
+        print("❌ Exception in run_bfs:", str(e))
+        return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050, host='0.0.0.0')
