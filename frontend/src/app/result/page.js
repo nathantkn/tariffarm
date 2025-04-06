@@ -35,6 +35,9 @@ export default function Result() {
       // Save the JSON data to localStorage (if needed)
       localStorage.setItem('geminiResponse', JSON.stringify(parsedResult));
 
+      console.log('Saving data to localStorage:', parsedResult); // Debugging line
+
+      
       // Navigate to the shipping methods page
       router.push('/shipping');
     } else {
