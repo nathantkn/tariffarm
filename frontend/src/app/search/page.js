@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -8,6 +9,9 @@ export default function Home() {
     { name: 'Soybeans', price: 318.29 },
     { name: 'Corn', price: 187.56 }
   ]);
+  const router = useRouter();
+
+  const [geminiResponse, setGeminiResponse] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +25,16 @@ export default function Home() {
       });
 
       const data = await res.json();
+      
       if (res.ok) {
         alert('Gemini Response:\n' + data.result);
+        // Navigate to /results page and pass JSON as a string in query
+        // router.push(`/results?data=${encodeURIComponent(JSON.stringify(data.result))}`);
+
+        //BACKUP: use local storage to store JSON data
+        localStorage.setItem('geminiResponse', JSON.stringify(data.result));
+        router.push('/result');
+
       } else {
         alert('Gemini Error:\n' + (data.message || data.body || 'Something went wrong.'));
       }

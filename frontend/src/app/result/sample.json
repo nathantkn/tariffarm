@@ -1,0 +1,10 @@
+{
+    "query1": {
+        "food": "Apples",
+        "units in kilogram": 100,
+        "country of origin": "USA",
+        "tariff percentage from country of origin": 5.0,
+        "market price in origin country per kilogram (USD)": 2.5,
+        "total price of importing(USD)": 262.5
+    }
+}
