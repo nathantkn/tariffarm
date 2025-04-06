@@ -24,6 +24,8 @@ export default function Home() {
       });
 
       const data = await res.json();
+      const router = useRouter();
+
       if (res.ok) {
         alert('Gemini Response:\n' + data.result);
         // Navigate to /results page and pass JSON as a string in query
