@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -118,4 +121,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* standardized helvetica */
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue.ttf') format('truetype');
 }

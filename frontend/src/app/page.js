@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import Lottie from "lottie-react";
+import './globals.css';
 
 import BigAnimation from '@/assets/BigAnimation.json';
 import animation from '@/assets/animation.json';

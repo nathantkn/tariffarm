@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import '../globals.css';
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -27,7 +28,9 @@ export default function Home() {
       const data = await res.json();
       
       if (res.ok) {
-        alert('Gemini Response:\n' + data.result);
+        // debugging purposes
+        // alert('Gemini Response:\n' + data.result);
+        
         // Navigate to /results page and pass JSON as a string in query
         // router.push(`/results?data=${encodeURIComponent(JSON.stringify(data.result))}`);
 
