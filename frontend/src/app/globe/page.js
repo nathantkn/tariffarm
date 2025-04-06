@@ -1,12 +1,34 @@
 "use client";
 
 import React, { useEffect, useState, useMemo, useRef } from "react";
+import { useRouter } from 'next/navigation';
 import Script from "next/script";
 
 export default function GlobePage() {
+  const router = useRouter();
   const [routes, setRoutes] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const citySeriesRef = useRef(null);
+
+  const handleFinalResults = async () => {
+    try {
+      const response = await fetch('http://localhost:5050/api/run-total', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('totalResult', data.stdout);
+        router.push('/final_result');
+      } else {
+        const errorData = await response.json();
+        alert('Error: ' + errorData.error);
+      }
+    } catch (error) {
+      alert('Request failed: ' + error.message);
+    }
+  };
 
   function parseRoutes(response) {
     const routes = [];
@@ -33,12 +55,23 @@ export default function GlobePage() {
   }, []);
 
   useEffect(() => {
-    if (routes.length === 0) return;
-    // Ensure that the amCharts libraries are available globally.
+    // If the amCharts library is missing, reload the page once.
     if (!window.am5) {
-      console.error("amCharts libraries not found");
-      return;
+      if (!sessionStorage.getItem("globePageReloaded")) {
+        sessionStorage.setItem("globePageReloaded", "true");
+        window.location.reload();
+        return; // Stop further initialization until reload.
+      }
     }
+  }, [routes]);
+    
+    useEffect(() => {
+        if (routes.length === 0) return;
+        // Ensure that the amCharts libraries are available globally.
+        if (!window.am5) {
+        console.error("amCharts libraries not found");
+        return;
+        }
 
     // Create root element
     const root = window.am5.Root.new("chartdiv");
@@ -400,6 +433,7 @@ export default function GlobePage() {
         </div> */}
         <div style={{ textAlign: "center", marginTop: "40px" }}>
         <button
+          onClick={handleFinalResults}
           style={{
             background: "linear-gradient(90deg, #ff7e5f, #feb47b)",
             color: "#fff",
