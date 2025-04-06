@@ -1,18 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Apple, Route, Truck} from 'lucide-react';
 import '../globals.css';
 
 export default function Home() {
   const [query, setQuery] = useState('');
-  const [trending, setTrending] = useState([
-    { name: 'Wheat', price: 231.42 },
-    { name: 'Soybeans', price: 318.29 },
-    { name: 'Corn', price: 187.56 }
-  ]);
   const router = useRouter();
-
-  const [geminiResponse, setGeminiResponse] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,19 +20,10 @@ export default function Home() {
       });
 
       const data = await res.json();
-      
-      if (res.ok) {
-        // debugging purposes
-        // alert('Gemini Response:\n' + data.result);
-        
-        // Navigate to /results page and pass JSON as a string in query
-        // router.push(`/results?data=${encodeURIComponent(JSON.stringify(data.result))}`);
 
-        //BACKUP: use local storage to store JSON data
-        console.log('Saving data to localStorage:', data.result); // Debugging line
+      if (res.ok) {
         localStorage.setItem('geminiResponse', JSON.stringify(data.result));
         router.push('/result');
-
       } else {
         alert('Gemini Error:\n' + (data.message || data.body || 'Something went wrong.'));
       }
@@ -48,113 +33,93 @@ export default function Home() {
   };
 
   return (
-    <div style={styles.body}>
-      <header style={styles.header}>
-        <img src="/logo.svg" alt="App Logo" height="42" />
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-white">
+      <main className="container mx-auto px-4 py-12 max-w-6xl">
+        {/* Header Section */}
+        <header className="text-center mb-16">
+          <h1 className="text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-green-400">
+            Tariffarm
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Your intelligent companion in navigating global food commodity markets
+          </p>
+        </header>
 
-      <main style={styles.container}>
-        <div style={styles.formWrapper}>
-          <label htmlFor="query">What produce would you like to buy?</label>
-          <form onSubmit={handleSubmit} style={{ display: 'flex', marginTop: '0.5rem' }}>
-            <input
-              type="text"
-              id="query"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="I'm importing 100 kilograms of avocado from Mexico"
-              required
-              style={styles.input}
-            />
-            <button type="submit" style={styles.button}>Search</button>
-          </form>
+        {/* Search Section */}
+        <div className="max-w-3xl mx-auto mb-16">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 border-2 border-emerald-100 transition-all duration-300 hover:shadow-emerald-100/50">
+            <label htmlFor="query" className="block text-lg text-gray-700 mb-3">
+              Enter produce details to get comprehensive insights
+            </label>
+            <form onSubmit={handleSubmit} className="flex">
+              <input
+                type="text"
+                id="query"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="e.g. 100 kilograms of avocado (08044000) from Mexico"
+                className="flex-grow px-4 py-3 text-gray-700 border-2 border-emerald-200 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
+                required
+              />
+              <button 
+                type="submit" 
+                className="bg-emerald-600 text-white px-6 py-3 rounded-r-lg hover:bg-emerald-700 transition-colors duration-300 ease-in-out transform hover:scale-105"
+              >
+                Explore
+              </button>
+            </form>
+            <p className="text-sm text-gray-500 mt-3 italic">
+              Pro tip: Use HS codes for precise commodity classification
+            </p>
+          </div>
         </div>
 
-        <section>
-          <h2 style={{ textAlign: 'center' }}>Trending Commodities</h2>
-          <div style={styles.trending}>
-            {trending.map((item, idx) => (
-              <div key={idx} style={styles.card}>
-                <h3>{item.name}</h3>
-                <p style={styles.muted}>${item.price.toFixed(2)}</p>
+        {/* Features Section */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {[
+            {
+              icon: <Apple size={48} className="text-emerald-600" />,
+              title: "AI-Powered Insights",
+              description: "Leverage Gemini's advanced intelligence for comprehensive market predictions."
+            },
+            {
+              icon: <Truck size={48} className="text-blue-600" />,
+              title: "Precise Calculations",
+              description: "Get accurate estimates of total food costs, including tariffs and logistics."
+            },
+            {
+              icon: <Route size={48} className="text-purple-600" />,
+              title: "Strategic Routing",
+              description: "Discover optimal import routes to minimize costs and maximize efficiency."
+            }
+          ].map((feature, index) => (
+            <div 
+              key={index} 
+              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transform transition duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              <div className="mb-4">
+                {feature.icon}
               </div>
-            ))}
-          </div>
-        </section>
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </main>
 
-      <footer style={styles.footer}>
-        Powered by AgriIntel · <a href="https://nextjs.org" target="_blank">Learn Next.js</a>
+      {/* Footer */}
+      <footer className="bg-gray-100 py-8 text-center">
+        <p className="text-gray-600 mb-2">
+          © 2025 Tariffarm. All rights reserved.
+        </p>
+        <p className="text-sm text-gray-500">
+          Powered by Google's Gemini API and our passion for global food markets
+        </p>
       </footer>
     </div>
   );
 }
-
-const styles = {
-  body: {
-    fontFamily: 'Inter, sans-serif',
-    backgroundColor: '#f9fafb',
-    color: '#111',
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-    margin: 0
-  },
-  header: {
-    textAlign: 'center',
-    padding: '1rem'
-  },
-  container: {
-    flex: 1,
-    padding: '2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '2rem'
-  },
-  formWrapper: {
-    maxWidth: '500px',
-    width: '100%'
-  },
-  input: {
-    flex: 1,
-    padding: '0.75rem',
-    fontSize: '1rem',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    marginRight: '1rem'
-  },
-  button: {
-    padding: '0.75rem 1.5rem',
-    backgroundColor: '#0070f3',
-    color: 'white',
-    border: 'none',
-    borderRadius: '8px',
-    fontWeight: '600',
-    cursor: 'pointer'
-  },
-  trending: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-    gap: '1rem',
-    maxWidth: '800px',
-    width: '100%'
-  },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '1rem',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-    textAlign: 'center'
-  },
-  muted: {
-    color: '#666',
-    fontSize: '0.9rem'
-  },
-  footer: {
-    textAlign: 'center',
-    fontSize: '0.85rem',
-    color: '#666',
-    paddingBottom: '2rem'
-  }
-};

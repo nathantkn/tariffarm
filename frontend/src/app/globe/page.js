@@ -1,10 +1,37 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Script from "next/script";
 
 export default function GlobePage() {
+  const [routes, setRoutes] = useState([]);
+
+  function parseRoutes(response) {
+    const routes = [];
+    // This regex matches the route number, itinerary, tax, and time
+    const regex = /🔸 Route #(\d+):\s*(.+?)\s*Total Tax \(%\):\s*(\d+)\s*Total Time \(days\):\s*(\d+)/gs;
+    let match;
+    while ((match = regex.exec(response)) !== null) {
+      routes.push({
+        name: `Route #${match[1]}`,
+        // Replace the arrow with a hyphen for better display in the table
+        itinerary: match[2].trim(),
+        cost: `$${match[3]}`,
+        time: `${match[4]} days`
+      });
+    }
+    return routes;
+  }
+
   useEffect(() => {
+    const storedRoutes = localStorage.getItem("bfsOutput");
+    if (storedRoutes) {
+      setRoutes(parseRoutes(storedRoutes));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (routes.length === 0) return;
     // Ensure that the amCharts libraries are available globally.
     if (!window.am5) {
       console.error("amCharts libraries not found");
@@ -143,14 +170,14 @@ export default function GlobePage() {
     citySeries.data.setAll(cities);
 
     // Prepare line series data: connect cities based on routes
-    const routes = [
-        "India → USA",
-        "India → China → USA",
-        "India → China → Japan → USA"
-    ];
+    // const routes = [
+    //     "India → USA",
+    //     "India → China → USA",
+    //     "India → China → Japan → USA"
+    // ];
 
     routes.forEach((route) => {
-        const stops = route
+        const stops = route.itinerary 
         .split("→")
         .map((s) => s.trim().toLowerCase().replaceAll(" ", "-"));
 
@@ -254,7 +281,7 @@ export default function GlobePage() {
     return () => {
         root.dispose();
     };
-}, []);
+}, [routes]);
 
 return (
     <>
@@ -293,37 +320,14 @@ return (
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Spinach</td>
-              <td>Paris - Brussels - Chicago</td>
-              <td>$500</td>
-              <td>2 days</td>
-            </tr>
-            <tr>
-              <td>Broccoli</td>
-              <td>London - Prague - Athens</td>
-              <td>$700</td>
-              <td>3 days</td>
-            </tr>
-            <tr>
-              <td>Carrot</td>
-              <td>New York - Reykjavik - Brussels</td>
-              <td>$600</td>
-              <td>4 days</td>
-            </tr>
-            <tr>
-              <td>Potato</td>
-              <td>Madrid - Lisbon - Moscow</td>
-              <td>$800</td>
-              <td>5 days</td>
-            </tr>
-            <tr>
-              <td>Tomato</td>
-              <td>Belgrade - Ljubljana - Stockholm</td>
-              <td>$900</td>
-              <td>6 days</td>
-            </tr>
-            {/* Add additional rows as needed */}
+            {routes.map((route, index) => (
+              <tr key={index}>
+                <td>{route.name}</td>
+                <td>{route.itinerary}</td>
+                <td>{route.cost}</td>
+                <td>{route.time}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

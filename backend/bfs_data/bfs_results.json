@@ -1,0 +1,29 @@
+[
+    {
+        "path": [
+            "India",
+            "USA"
+        ],
+        "total_tax": 0,
+        "total_time": 22
+    },
+    {
+        "path": [
+            "India",
+            "China",
+            "USA"
+        ],
+        "total_tax": 34,
+        "total_time": 26
+    },
+    {
+        "path": [
+            "India",
+            "China",
+            "Japan",
+            "USA"
+        ],
+        "total_tax": 58,
+        "total_time": 25
+    }
+]

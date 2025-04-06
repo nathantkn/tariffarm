@@ -82,7 +82,7 @@ export default function Home() {
           />
         </div>
         <div className="relative z-10 flex flex-col mt-45 items-center">
-          <h1 className="text-9xl font-bold mb-25">Import Calculator</h1>
+          <h1 className="text-9xl font-bold mb-25">TARIFFARM</h1>
           <button
             onClick={() => router.push("/search")}
             className="mx-auto px-10 py-8 bg-green-400 text-2xl text-black font-bold rounded-full hover:bg-green-600">

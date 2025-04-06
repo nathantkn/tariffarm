@@ -85,5 +85,13 @@ else:
             print(f"🔸 Route #{i}: {' → '.join(route['path'])}")
             print(f"    Total Tax (%): {route['total_tax']}")
             print(f"    Total Time (days): {route['total_time']}\n")
+
+                    # Save the results to a JSON file in the same directory
+        output_filename = f"bfs_data/bfs_results.json"
+        # in the same directory
+        with open(output_filename, "w") as outfile:
+            json.dump(results, outfile, indent=4)
+        print(f"✅ Results saved to {output_filename}")
+        
     else:
         print("⚠️ No valid route found between these countries.")

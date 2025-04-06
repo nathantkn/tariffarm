@@ -1,0 +1,34 @@
+{
+    "candidates": [
+        {
+            "content": {
+                "parts": [
+                    {
+                        "text": "The BFS results outline three possible routes for shipping from India to the USA, with varying paths, total taxes, and total transit times. The direct route (India to USA) has the lowest tax (0) and a travel time of 22.  A route via China increases the tax to 34 and the travel time to 26.  A route via China and Japan increases the tax further to 58, while the travel time is 25.\n\nThe Gemini results detail the import costs for 100 kilograms of Bananas from India to the USA.  The total import price is $63.5 USD. The raw data provides sufficient information to calculate the following details, even if they are not explicitly stated:\n\n*   **\ud83d\udce6 Product Cost at Origin:** 100 kg * $0.50/kg = $50 USD\n*   **FOB Price (Free On Board):** This is not explicitly stated but is essentially the price of the goods plus costs up to the point of loading onto the transport. Since the only given origin cost is the base product price, we can presume for simplicity that FOB price = $50 until more information is provided.\n*   **Packing/Processing Fees:** Unknown and not specified in the Gemini result.\n*   **Cold Chain Handling:** Unknown and not specified in the Gemini result.\n*   **Health and Safety Certification:** Unknown and not specified in the Gemini result.\n*   **Export Duties:** We can calculate the tarrif paid. $50 * 0.27 (tariff percentage) = $13.5.  We can assume this is the \"Export Duties\".\n*   **Inspection/Quality Testing:** Unknown and not specified in the Gemini result.\n*   **\ud83d\ude9a International Transportation Costs:** Not directly specified, however, the total import cost ($63.5) minus the product cost ($50) and export duties ($13.5) leaves $0. This suggests that the price of $63.5 takes into account transportation costs.\n*   **\ud83d\udec3 U.S. Customs and Border Protection (CBP) Charges:** These charges are rolled into the tariff.\n*   **\ud83e\uddca Post-Clearance Costs:** Unknown and not specified in the Gemini result.\n*   **\ud83d\udccb Miscellaneous/Operational Costs:** The remaining $0 could be this, although it's unlikely. We can assume there are negligible operational costs involved.\n\nIn short, importing 100kg of bananas from India costs $63.5, including the initial cost of $50, a tariff of $13.5, and potentially covering transportation. The individual fees regarding the shipping process, such as packing, handling, inspection, etc., are not itemized.\n"
+                    }
+                ],
+                "role": "model"
+            },
+            "finishReason": "STOP",
+            "avgLogprobs": -0.6502424193913549
+        }
+    ],
+    "usageMetadata": {
+        "promptTokenCount": 380,
+        "candidatesTokenCount": 578,
+        "totalTokenCount": 958,
+        "promptTokensDetails": [
+            {
+                "modality": "TEXT",
+                "tokenCount": 380
+            }
+        ],
+        "candidatesTokensDetails": [
+            {
+                "modality": "TEXT",
+                "tokenCount": 578
+            }
+        ]
+    },
+    "modelVersion": "gemini-2.0-flash"
+}
