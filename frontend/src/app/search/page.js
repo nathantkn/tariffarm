@@ -29,7 +29,12 @@ export default function Home() {
       if (res.ok) {
         alert('Gemini Response:\n' + data.result);
         // Navigate to /results page and pass JSON as a string in query
-        router.push(`/results?data=${encodeURIComponent(JSON.stringify(data.result))}`);
+        // router.push(`/results?data=${encodeURIComponent(JSON.stringify(data.result))}`);
+
+        //BACKUP: use local storage to store JSON data
+        localStorage.setItem('geminiResponse', JSON.stringify(data.result));
+        router.push('/result');
+
       } else {
         alert('Gemini Error:\n' + (data.message || data.body || 'Something went wrong.'));
       }
