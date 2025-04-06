@@ -55,9 +55,9 @@ export default function Home() {
 
 
       <main style={styles.container}>
-        <header class="text-center mb-12">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-green-400">Tariffarm</h1>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <header className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green-400">Tariffarm</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             helping you find the best prices for your food
           </p>
         </header>
@@ -72,8 +72,8 @@ export default function Home() {
               id="query"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="e.g.100 kilograms of avocado from Mexico, 08044000"
-              class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
+              placeholder="e.g.100 kilograms of avocado (08044000) from Mexico"
+              className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
               required
             />
             <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-r-md hover:bg-blue-700 transition">Search</button>
