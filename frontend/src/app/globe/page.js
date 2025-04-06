@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import Script from "next/script";
 
 export default function GlobePage() {
   const [routes, setRoutes] = useState([]);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const citySeriesRef = useRef(null);
 
   function parseRoutes(response) {
     const routes = [];
@@ -95,16 +97,26 @@ export default function GlobePage() {
     const citySeries = chart.series.push(
       window.am5map.MapPointSeries.new(root, {})
     );
-    citySeries.bullets.push(() => {
-      const circle = window.am5.Circle.new(root, {
-        radius: 5,
-        tooltipText: "{title}",
-        tooltipY: 0,
-        fill: window.am5.color(0xffba00),
-        stroke: root.interfaceColors.get("background"),
-        strokeWidth: 2
+    citySeriesRef.current = citySeries;
+
+    citySeries.bullets.push(function(root, series, dataItem) {
+      // Create a container for the node (similar to the API sample)
+      const container = window.am5.Container.new(root, {});
+      const circle = container.children.push(
+        window.am5.Circle.new(root, {
+          radius: 5,
+          tooltipText: "{title}",
+          tooltipY: 0,
+          fill: window.am5.color(0xffba00), // default color (yellow)
+          stroke: root.interfaceColors.get("background"),
+          strokeWidth: 2
+        })
+      );
+      // Return a dynamic bullet with the container as sprite.
+      return window.am5.Bullet.new(root, {
+        sprite: container,
+        dynamic: true
       });
-      return window.am5.Bullet.new(root, { sprite: circle });
     });
 
     // City data
@@ -183,23 +195,17 @@ export default function GlobePage() {
 
         let previousDataItem = null;
 
-        stops.forEach((stop, index) => {
+        stops.forEach((stop) => {
         const currentDataItem = citySeries.getDataItemById(stop);
 
         if (previousDataItem && currentDataItem) {
             // Create the visible line for the connection
             const connectionItem = lineSeries.pushDataItem({});
-            connectionItem.set("pointsToConnect", [
-              previousDataItem,
-              currentDataItem
-            ]);
+            connectionItem.set("pointsToConnect", [previousDataItem, currentDataItem]);
   
             // Create the visible dotted line (static)
             const animatedLineDataItem = animatedLineSeries.pushDataItem({});
-            animatedLineDataItem.set("pointsToConnect", [
-              previousDataItem,
-              currentDataItem
-            ]);
+            animatedLineDataItem.set("pointsToConnect", [previousDataItem, currentDataItem]);
   
             // Create the arrow that moves along the line
             const arrowSeries = chart.series.push(
@@ -230,7 +236,6 @@ export default function GlobePage() {
 
             // Create multiple arrows for each line segment (creates a "train" effect)
             const numArrows = 1; // Number of arrows per line
-            
             for (let i = 0; i < numArrows; i++) {
                 const arrowDataItem = arrowSeries.pushDataItem({
                 lineDataItem: animatedLineDataItem,
@@ -239,7 +244,7 @@ export default function GlobePage() {
             });
 
               // Animate the arrow along the line
-            const animation = arrowDataItem.animate({
+            arrowDataItem.animate({
                 key: "positionOnLine",
                 from: i / numArrows,
                 to: 1,
@@ -247,32 +252,23 @@ export default function GlobePage() {
                 loops: Infinity,
                 easing: window.am5.ease.out(window.am5.ease.cubic),
             });
-            
-            }
+          }
         }
-  
         previousDataItem = currentDataItem;
-        });
       });
+    });
     
     // Zoom out more on initial load (changed zoom level from 3 to 1)
     polygonSeries.events.on("datavalidated", function () {
-        chart.zoomToGeoPoint(
-        {
-            longitude: -0.1262,
-            latitude: 51.5002
-        },
-        1
-        );
+      chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 51.5002 }, 1);
     });
 
     // Animate chart appearance
     chart.appear(1000, 100);
-
     chart.animate({
         key: "rotationX",
         from: 0,
-        to: 360 * 2, // 3 full rotations
+        to: 360 * 2, // 2 full rotations
         duration: 15000,
         easing: window.am5.ease.out(window.am5.ease.cubic)
     });
@@ -283,7 +279,58 @@ export default function GlobePage() {
     };
 }, [routes]);
 
-return (
+  // Toggle row selection: if the row is selected, remove it; otherwise, add it.
+  const handleRowClick = (index) => {
+    setSelectedRows((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
+  // Compute a unique list of countries from the selected routes.
+  const selectedCountries = useMemo(() => {
+    const countriesSet = new Set();
+    selectedRows.forEach((rowIndex) => {
+      const route = routes[rowIndex];
+      if (route && route.itinerary) {
+        route.itinerary.split("→").forEach((country) => {
+          countriesSet.add(country.trim());
+        });
+      }
+    });
+    return Array.from(countriesSet);
+  }, [selectedRows, routes]);
+
+  // NEW: Dynamic update of node (city) colors
+  useEffect(() => {
+  if (!citySeriesRef.current) return;
+
+  // Iterate over each data item key in the city series.
+  Object.keys(citySeriesRef.current.dataItems).forEach((key) => {
+    const dataItem = citySeriesRef.current.dataItems[key];
+    if (!dataItem || !dataItem.dataContext || !dataItem.dataContext.title) return;
+
+    const title = dataItem.dataContext.title.toLowerCase();
+
+    // Check if a bullet exists for this data item
+    if (!dataItem.bullet) return;
+
+    // Get the container from the bullet
+    const container = dataItem.bullet.get("sprite");
+    if (!container || !container.children || !container.children.values) return;
+
+    const children = container.children.values;
+    if (children.length > 0) {
+      const circle = children[0];
+      if (selectedCountries.some((c) => c.toLowerCase() === title)) {
+        circle.set("fill", window.am5.color(0xff0000)); // Selected: red
+      } else {
+        circle.set("fill", window.am5.color(0xffba00)); // Default: yellow
+      }
+    }
+  });
+}, [selectedCountries]);
+
+  return (
     <>
       {/* Load external amCharts scripts */}
       <Script src="https://cdn.amcharts.com/lib/5/index.js" strategy="beforeInteractive" />
@@ -321,7 +368,14 @@ return (
           </thead>
           <tbody>
             {routes.map((route, index) => (
-              <tr key={index}>
+              <tr 
+              key={index}
+              onClick={() => handleRowClick(index)}
+              style={{
+                backgroundColor: selectedRows.includes(index) ? "grey" : "transparent",
+                cursor: "pointer"
+              }}
+              >
                 <td>{route.name}</td>
                 <td>{route.itinerary}</td>
                 <td>{route.cost}</td>
@@ -330,6 +384,37 @@ return (
             ))}
           </tbody>
         </table>
+
+        {/* Display the list of selected countries
+        <div style={{ margin: "20px auto", width: "80%" }}>
+          <h2>Selected Countries</h2>
+          {selectedCountries.length > 0 ? (
+            <ul>
+              {selectedCountries.map((country, idx) => (
+                <li key={idx}>{country}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>No countries selected</p>
+          )}
+        </div> */}
+        <div style={{ textAlign: "center", marginTop: "40px" }}>
+        <button
+          style={{
+            background: "linear-gradient(90deg, #ff7e5f, #feb47b)",
+            color: "#fff",
+            padding: "12px 24px",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontSize: "16px",
+            boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+            transition: "transform 0.2s ease, box-shadow 0.2s ease"
+          }}
+        >
+          Final Results
+        </button>
+        </div>
       </div>
     </>
   );
