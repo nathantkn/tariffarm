@@ -4,13 +4,11 @@ import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import Lottie from "lottie-react";
 
-import BigAnimation from '@/assets/BigAnimation.json';  // if you're using path aliases
+import BigAnimation from '@/assets/BigAnimation.json';
 import animation from '@/assets/animation.json';
 
-
-
 export default function Home() {
-  const router = useRouter();  // 👈 add this near top of your component
+  const router = useRouter();
 
   const [mainInView, setMainInView] = useState(false);
   const [secondHeadingVisible, setSecondHeadingVisible] = useState(false);
@@ -71,7 +69,7 @@ export default function Home() {
     <div>
       <div
         ref={mainRef}
-        className={`relative flex flex-col items-center justify-center min-h-screen text-center transition-all transform duration-2000 ${
+        className={`relative flex flex-col items-center bg-white justify-center min-h-screen text-center transition-all transform duration-2000 ${
           mainVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         }`}
       >
@@ -85,10 +83,10 @@ export default function Home() {
         <div className="relative z-10 flex flex-col mt-45 items-center">
           <h1 className="text-9xl font-bold mb-25">Import Calculator</h1>
           <button
-          onClick={() => router.push("/search")}
-          className="mx-auto px-10 py-8 bg-green-400 text-2xl text-black font-bold rounded-full hover:bg-green-600">
-          Get Started
-        </button>
+            onClick={() => router.push("/search")}
+            className="mx-auto px-10 py-8 bg-green-400 text-2xl text-black font-bold rounded-full hover:bg-green-600">
+            Get Started
+          </button>
         </div>
       </div>
 
