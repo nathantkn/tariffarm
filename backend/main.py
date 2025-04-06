@@ -20,13 +20,41 @@ def call_gemini_api():
         if not user_query:
             return jsonify({'error': 'Query is required'}), 400
 
+        # Example static tariff data (replace with dynamic logic later if needed)
+        tariff_data = {
+            "India": 10.5,
+            "Mexico": 5.2,
+            "Brazil": 12.8
+        }
+
+        # Construct the full prompt
+        full_prompt = f"""
+Based on the following input: "{user_query}", calculate the total price for importing goods following reciprocal tariffs.
+Use the following tariff data for accurate calculations:
+{json.dumps(tariff_data, indent=4)}
+Use this JSON schema for the output:
+{{
+    "query1": {{
+        "food": str,
+        "units in kilogram": int,
+        "country of origin": str,
+        "tariff percentage from country of origin": float,
+        "market price in origin country per kilogram (USD)": float,
+        "total price of importing(USD)": float
+    }}
+}}
+The total price is calculated as:
+(market price per kilogram * units in kilogram) + (tariff percentage * market price per unit * units / 100).
+Return the result in JSON format.
+"""
+
         headers = {
             "Content-Type": "application/json"
         }
 
         payload = {
             "contents": [{
-                "parts": [{"text": user_query}]
+                "parts": [{"text": full_prompt}]
             }]
         }
 
@@ -55,7 +83,7 @@ def call_gemini_api():
     except Exception as e:
         import traceback
         print("SERVER ERROR:", str(e))
-        traceback.print_exc()  # Prints full error in your terminal
+        traceback.print_exc()
         return jsonify({'error': 'Server exception', 'message': str(e)}), 500
 
 if __name__ == '__main__':
