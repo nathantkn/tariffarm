@@ -1,7 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import '../globals.css';
+import { Apple, Route, Truck} from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -26,11 +29,11 @@ export default function Home() {
       });
 
       const data = await res.json();
-      
+
       if (res.ok) {
         // debugging purposes
         // alert('Gemini Response:\n' + data.result);
-        
+
         // Navigate to /results page and pass JSON as a string in query
         // router.push(`/results?data=${encodeURIComponent(JSON.stringify(data.result))}`);
 
@@ -49,42 +52,87 @@ export default function Home() {
 
   return (
     <div style={styles.body}>
-      <header style={styles.header}>
-        <img src="/logo.svg" alt="App Logo" height="42" />
-      </header>
+
 
       <main style={styles.container}>
-        <div style={styles.formWrapper}>
-          <label htmlFor="query">What produce would you like to buy?</label>
+        <header className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green-400">Tariffarm</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            helping you find the best prices for your food
+          </p>
+        </header>
+
+
+        <div class="max-w-2xl mx-auto mb-16">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+          <label htmlFor="query">Enter produce name or HS code, followed by quantity and location of origin.</label>
           <form onSubmit={handleSubmit} style={{ display: 'flex', marginTop: '0.5rem' }}>
             <input
               type="text"
               id="query"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="I'm importing 100 kilograms of avocado from Mexico"
+              placeholder="e.g.100 kilograms of avocado (08044000) from Mexico"
+              className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
               required
-              style={styles.input}
             />
-            <button type="submit" style={styles.button}>Search</button>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-r-md hover:bg-blue-700 transition">Search</button>
           </form>
+          <p class="text-sm text-gray-500 mt-2">
+              An HS code is a harmony system code used to classify goods for international trade. 
+          </p>
+          </div>
         </div>
 
-        <section>
-          <h2 style={{ textAlign: 'center' }}>Trending Commodities</h2>
+        {/* <section>
+          <h1 className="text-x1 font-bold mb-4">Trending Commodities</h1>
           <div style={styles.trending}>
             {trending.map((item, idx) => (
-              <div key={idx} style={styles.card}>
+              <div key={idx} className="rounded-2x1 p-4 shadow-md border bg-white dark:bg-gray-950">
                 <h3>{item.name}</h3>
                 <p style={styles.muted}>${item.price.toFixed(2)}</p>
               </div>
             ))}
           </div>
-        </section>
+          
+        </section> */}
+
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="text-red-600 text-3xl mb-4">
+              <Apple size={48} />
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Let Gemini be your guide</h3>
+            <p class="text-gray-600">
+              Ask Gemini to help you with food commodity predictions.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="text-blue-600 text-3xl mb-4">
+              <Truck size={48} />
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Accurate Results</h3>
+            <p class="text-gray-600">
+              Get accurate and up-to-date estimates of total food cost, including tariffs and transportation.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="text-purple-600 text-3xl mb-4">
+              <Route size={48} />
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Explore Options</h3>
+            <p class="text-gray-600">
+              Find quicker and cheaper routes to import food from different countries.
+            </p>
+          </div>
+      </div>
+
+
       </main>
 
-      <footer style={styles.footer}>
-        Powered by AgriIntel · <a href="https://nextjs.org" target="_blank">Learn Next.js</a>
+      <footer class="text-center text-gray-500 text-sm pt-8 border-t border-gray-200">
+        <p>© 2025 Tariffarm. All rights reserved.</p>
+        <p class="mt-2">Powered by Google's Gemini API and our love for food from home.</p>
       </footer>
     </div>
   );
@@ -92,9 +140,8 @@ export default function Home() {
 
 const styles = {
   body: {
-    fontFamily: 'Inter, sans-serif',
-    backgroundColor: '#f9fafb',
-    color: '#111',
+    fontFamily: 'Helvetica-Neue, sans-serif',
+    backgroundColor: '#FFFAED',
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
@@ -102,7 +149,8 @@ const styles = {
   },
   header: {
     textAlign: 'center',
-    padding: '1rem'
+    padding: '1rem',
+    fontSize: '1.5rem',
   },
   container: {
     flex: 1,
@@ -110,11 +158,13 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '2rem'
+    gap: '3rem'
   },
   formWrapper: {
     maxWidth: '500px',
-    width: '100%'
+    width: '100%',
+    marginBottom: '1rem', // Add space below the form
+    alignItems: 'flex-start'
   },
   input: {
     flex: 1,
@@ -136,25 +186,25 @@ const styles = {
   trending: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-    gap: '1rem',
+    gap: '2rem',
     maxWidth: '800px',
     width: '100%'
   },
   card: {
     backgroundColor: 'white',
     borderRadius: '12px',
-    padding: '1rem',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-    textAlign: 'center'
+    padding: '2rem', // Increase padding for larger content
+    boxShadow: '0 4px 15px rgba(76, 74, 74, 0.1)', // Slightly stronger shadow for emphasis
+    textAlign: 'center',
+    fontSize: '1.2rem', // Increase font size for card content
+    height: '150px', // Optional: Set a fixed height for uniformity
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   muted: {
     color: '#666',
     fontSize: '0.9rem'
   },
-  footer: {
-    textAlign: 'center',
-    fontSize: '0.85rem',
-    color: '#666',
-    paddingBottom: '2rem'
-  }
 };
