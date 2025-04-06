@@ -29,3 +29,4 @@ Gemini AI API
 No art used in this project is chatgpt'ed
 
 
+# Nathan_ships

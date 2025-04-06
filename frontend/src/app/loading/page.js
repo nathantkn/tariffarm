@@ -16,7 +16,7 @@ export default function Home() {
 
     const redirectTimer = setTimeout(() => {
       router.push('/globe');
-    }, 2000);
+    }, 5000);
 
     return () => {
       clearInterval(dotInterval);
