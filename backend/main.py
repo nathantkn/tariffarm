@@ -4,6 +4,8 @@ import requests
 import json
 import os
 import subprocess
+import re
+
 
 
 app = Flask(__name__)
@@ -155,6 +157,25 @@ def run_bfs():
         print("❌ Exception in run_bfs:", str(e))
         return jsonify({"error": str(e)}), 500
 
+@app.route('/api/run-total', methods=['POST'])
+def run_total():
+    try:
+        total_path = os.path.join(os.path.dirname(__file__), 'total.py')
+        result = subprocess.run(['python3', total_path], capture_output=True, text=True)
+
+        if result.returncode != 0:
+            return jsonify({
+                'error': 'Execution failed',
+                'stderr': result.stderr
+            }), 500
+
+        return jsonify({
+            'message': 'Total calculation successful',
+            'stdout': result.stdout.strip()
+        }), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050, host='0.0.0.0')

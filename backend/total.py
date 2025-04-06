@@ -23,26 +23,29 @@ if not bfs_results or not gemini_results:
 
 # Construct the full prompt for the Gemini API
 full_prompt = f"""
-Summarize the following information:
+Below is data regarding agricultural commodities exported to the USA. Calculate the complete transportation cost per unit, including taxes for intermediate countries and transportation mode costs (sea, air, road). Multiply this by the number of units for total expenses. Provide a detailed technical summary, covering total transport duration, extra costs, and the following specifics:
 
-BFS Results:
+- 📦 Product Cost at Origin  
+- FOB Price (Free On Board)  
+- Packing/Processing Fees  
+- Cold Chain Handling  
+- Health and Safety Certification  
+- Export Duties  
+- Inspection/Quality Testing  
+- 🚚 International Transportation Costs  
+- 🛃 U.S. Customs and Border Protection (CBP) Charges  
+- 🧊 Post-Clearance Costs  
+- 📋 Miscellaneous/Operational Costs  
+
+Data:
+
+BFS Results:  
 {json.dumps(bfs_results, indent=4)}
 
-Gemini Results:
+Gemini Results:  
 {json.dumps(gemini_results, indent=4)}
 
-Include the following details in the summary:
-- 📦 Product Cost at Origin
-- FOB Price (Free On Board)
-- Packing/Processing Fees
-- Cold Chain Handling
-- Health and Safety Certification
-- Export Duties
-- Inspection/Quality Testing
-- 🚚 International Transportation Costs
-- 🛃 U.S. Customs and Border Protection (CBP) Charges
-- 🧊 Post-Clearance Costs
-- 📋 Miscellaneous/Operational Costs
+Include a clear conclusion summarizing total costs and logistics details.
 """
 
 # Gemini API configuration
