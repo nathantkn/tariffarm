@@ -32,8 +32,6 @@ export default function Result() {
     <div>
       {parsedResult ? (
 
-
-
         // <div>
         //   <h2>Food: {parsedResult.food}</h2>
         //   <h2>Units in kilogram: {parsedResult["units in kilogram"]}</h2>
@@ -43,39 +41,44 @@ export default function Result() {
         //   <h2>Total import cost (USD): ${parsedResult["total price of importing(USD)"]}</h2>
         // </div>
 
-<div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-  <div className="bg-white border-2 border-black shadow-xl p-6 rounded-md w-full max-w-4xl">
-    <h1 className="text-4xl font-bold text-center mb-6 tracking-wide">Results</h1>
-    {parsedResult ? (
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="p-4 bg-white border border-black shadow-md text-center text-xl font-semibold">
-          Food: {parsedResult.food}
+      <div className="w-full max-w-md border border-black p-4 bg-white shadow-md middle mx-auto mt-10 rounded-lg">
+        <h1 className="text-3xl font-extrabold border-b-8 border-black pb-1 mb-2">Order Facts</h1>
+
+        <div className="mb-2">
+          <p>Serving Size (In Kilograms): {parsedResult["units in kilogram"]}</p>
+          <p>Per Shipment</p>
         </div>
-        <div className="p-4 bg-white border border-black shadow-md text-center text-xl font-semibold">
-          Units in kilogram: {parsedResult["units in kilogram"]}
+
+        <div className="border-t border-black py-2 flex justify-between font-bold">
+          <span>Produce name</span>
+          <span>{parsedResult.food}</span>
         </div>
-        <div className="p-4 bg-white border border-black shadow-md text-center text-xl font-semibold">
-          Country of origin: {parsedResult["country of origin"]}
+
+
+        <div className="border-t border-black py-2 flex justify-between">
+          <span>Country of origin</span>
+          <span>{parsedResult["country of origin"]}</span>
         </div>
-        <div className="p-4 bg-white border border-black shadow-md text-center text-xl font-semibold">
-          Tariff % from origin: {parsedResult["tariff percentage from country of origin"]}%
+
+        <div className="border-t border-black py-2 flex justify-between">
+          <span>Reciprocal Tariff (as of April 2025) %</span>
+          <span>{parsedResult["tariff percentage from country of origin"]}%</span>
         </div>
-        <div className="p-4 bg-white border border-black shadow-md text-center text-xl font-semibold">
-          Market price/kg (USD): ${parsedResult["market price in origin country per kilogram (USD)"]}
+
+        <div className="border-t border-black py-2 flex justify-between">
+          <span>Market price/kg (USD)</span>
+          <span>${parsedResult["market price in origin country per kilogram (USD)"]}</span>
         </div>
-        <div className="p-4 bg-white border border-black shadow-md text-center text-xl font-semibold">
-          Total import cost (USD): ${parsedResult["total price of importing(USD)"]}
+
+        <div className="border-t border-black py-2 flex justify-between font-bold border-b-8 border-black">
+          <span>Total cost before shipping (USD)</span>
+          <span>${parsedResult["total price of importing(USD)"]}</span>
         </div>
+
+        <p className="text-xs mt-2 italic text-center">
+          Based on current market data. Costs may vary depending on conditions.
+        </p>
       </div>
-    ) : (
-      <p className="text-center text-lg font-medium">Loading...</p>
-    )}
-  </div>
-</div>
-
-
-
-
       ) : (
         <p>Loading...</p>
       )}

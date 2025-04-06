@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import '../globals.css';
 import { Apple, Route, Truck} from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -60,7 +61,6 @@ export default function Home() {
             helping you find the best prices for your food
           </p>
         </header>
-
 
 
         <div class="max-w-2xl mx-auto mb-16">

@@ -32,12 +32,37 @@ def call_gemini_api():
         #     "Brazil": 12.8
         # }
 
-        # Construct the full prompt
+        # This is where we get the full prompt
         full_prompt = f"""
-        Based on the following input: "{user_query}", calculate the total price for importing goods following reciprocal tariffs.
-        Use the following tariff data for accurate calculations:
+        Based on the following user input: "{user_query}", calculate the total price for importing goods using reciprocal tariffs.
+
+        If the user inputs a Harmonized System (HS) code (also called harmony code), first determine the corresponding food name from the HS code. 
+        Use the provided tariff data below to find the correct food name associated with the HS code and the country of origin.
+
+        If the user provides a food name instead, use it directly.
+
+        ⚠️ Ensure accurate matching between HS codes and food names based on the tariff data. 
+        If the HS code cannot be found in the tariff data, return an error message indicating that the HS code is not recognized.
+
+        Use the following tariff data for reference:
         {json.dumps(tariff_data, indent=4)}
-        Use this JSON schema for the output:
+
+        Here is an example input and the corresponding output format:
+
+        Input: "HS code 1006 from Vietnam, 1000 kg"
+        Output:
+        {{
+            "query1": {{
+                "food": "Rice",
+                "units in kilogram": 1000,
+                "country of origin": "Vietnam",
+                "tariff percentage from country of origin": 5.0,
+                "market price in origin country per kilogram (USD)": 0.80,
+                "total price of importing(USD)": 840.0
+            }}
+        }}
+
+        Use this JSON schema for your response:
         {{
             "query1": {{
                 "food": str,
@@ -48,10 +73,13 @@ def call_gemini_api():
                 "total price of importing(USD)": float
             }}
         }}
-        The total price is calculated as:
-        (market price per kilogram * units in kilogram) + (tariff percentage * market price per unit * units / 100).
-        Return the result in JSON format.
+
+        Total price is calculated as:
+        (market price per kilogram * units in kilogram) + (tariff percentage * market price * units / 100).
+
+        Respond only in JSON format.
         """
+
 
         headers = {
             "Content-Type": "application/json"
