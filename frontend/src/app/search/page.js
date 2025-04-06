@@ -9,6 +9,7 @@ export default function Home() {
     { name: 'Soybeans', price: 318.29 },
     { name: 'Corn', price: 187.56 }
   ]);
+  const router = useRouter();
 
   const [geminiResponse, setGeminiResponse] = useState(null);
 
@@ -24,8 +25,7 @@ export default function Home() {
       });
 
       const data = await res.json();
-      const router = useRouter();
-
+      
       if (res.ok) {
         alert('Gemini Response:\n' + data.result);
         // Navigate to /results page and pass JSON as a string in query
