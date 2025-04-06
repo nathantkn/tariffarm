@@ -1,144 +1,115 @@
-'use client';
-import { useState, useEffect } from 'react';
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { useRouter } from 'next/navigation';
+import Lottie from "lottie-react";
+
+import BigAnimation from '@/assets/BigAnimation.json';  // if you're using path aliases
+import animation from '@/assets/animation.json';
+
+
 
 export default function Home() {
-  const [query, setQuery] = useState('');
-  const [trending, setTrending] = useState([
-    { name: 'Wheat', price: 231.42 },
-    { name: 'Soybeans', price: 318.29 },
-    { name: 'Corn', price: 187.56 }
-  ]);
+  const router = useRouter();  // 👈 add this near top of your component
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch('http://127.0.0.1:5050/api/gemini', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ query })
-      });
+  const [mainInView, setMainInView] = useState(false);
+  const [secondHeadingVisible, setSecondHeadingVisible] = useState(false);
+  const secondWasVisible = useRef(false);
+  
+  const mainRef = useRef(null);
+  const secondHeadingRef = useRef(null);
 
-      const data = await res.json();
-      if (res.ok) {
-        alert('Gemini Response:\n' + data.result);
-      } else {
-        alert('Gemini Error:\n' + (data.message || data.body || 'Something went wrong.'));
-      }
-    } catch (err) {
-      alert('Request failed:\n' + err.message);
-    }
-  };
+  // Intersection Observer for the hero section.
+  useEffect(() => {
+    if (!mainRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio >= 0.3) {
+            setMainInView(true);
+          } else if (entry.intersectionRatio < 0.6) {
+            setMainInView(false);
+          }
+        });
+      },
+      { threshold: [0, 0.3, 0.6] }
+    );
+
+    observer.observe(mainRef.current);
+    return () => {
+      if (mainRef.current) observer.unobserve(mainRef.current);
+    };
+  }, []);
+
+  // Intersection Observer for Second Heading
+  useEffect(() => {
+    if (!secondHeadingRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!secondWasVisible.current && entry.intersectionRatio >= 0.3) {
+            setSecondHeadingVisible(true);
+            secondWasVisible.current = true;
+          } else if (secondWasVisible.current && entry.intersectionRatio < 0.6) {
+            setSecondHeadingVisible(false);
+            secondWasVisible.current = false;
+          }
+        });
+      },
+      { threshold: [0, 0.3, 0.6] }
+    );
+
+    observer.observe(secondHeadingRef.current);
+    return () => {
+      if (secondHeadingRef.current) observer.unobserve(secondHeadingRef.current);
+    };
+  }, []);
+
+  const mainVisible = mainInView;
 
   return (
-    <div style={styles.body}>
-      <header style={styles.header}>
-        <img src="/logo.svg" alt="App Logo" height="42" />
-      </header>
-
-      <main style={styles.container}>
-        <div style={styles.formWrapper}>
-          <label htmlFor="query">What produce would you like to buy?</label>
-          <form onSubmit={handleSubmit} style={{ display: 'flex', marginTop: '0.5rem' }}>
-            <input
-              type="text"
-              id="query"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="I'm importing 100 kilograms of avocado from Mexico"
-              required
-              style={styles.input}
-            />
-            <button type="submit" style={styles.button}>Search</button>
-          </form>
+    <div>
+      <div
+        ref={mainRef}
+        className={`relative flex flex-col items-center justify-center min-h-screen text-center transition-all transform duration-2000 ${
+          mainVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+        }`}
+      >
+        <div className="absolute inset-0 z-0">
+          <Lottie 
+            animationData={BigAnimation}
+            loop={true}
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
+        <div className="relative z-10 flex flex-col mt-45 items-center">
+          <h1 className="text-9xl font-bold mb-25">Import Calculator</h1>
+          <button
+          onClick={() => router.push("/search")}
+          className="mx-auto px-10 py-8 bg-green-400 text-2xl text-black font-bold rounded-full hover:bg-green-600">
+          Get Started
+        </button>
+        </div>
+      </div>
 
-        <section>
-          <h2 style={{ textAlign: 'center' }}>Trending Commodities</h2>
-          <div style={styles.trending}>
-            {trending.map((item, idx) => (
-              <div key={idx} style={styles.card}>
-                <h3>{item.name}</h3>
-                <p style={styles.muted}>${item.price.toFixed(2)}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
-
-      <footer style={styles.footer}>
-        Powered by AgriIntel · <a href="https://nextjs.org" target="_blank">Learn Next.js</a>
-      </footer>
+      <div
+        ref={secondHeadingRef}
+        className={`flex flex-col items-center justify-center min-h-screen bg-white text-center transition-all transform duration-2000 ${
+          secondHeadingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+        }`}
+      >
+        <Lottie 
+          animationData={animation}
+          loop={true} 
+          style={{ width: "100%", height: "100%" }} 
+        />
+        <h2 className="text-6xl mt-30 mb-5 font-bold">
+          For all your import calculation needs.
+        </h2>
+        <p className="text-2xl mt-4">
+          Importing made easy with our comprehensive calculator.
+        </p>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  body: {
-    fontFamily: 'Inter, sans-serif',
-    backgroundColor: '#f9fafb',
-    color: '#111',
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-    margin: 0
-  },
-  header: {
-    textAlign: 'center',
-    padding: '1rem'
-  },
-  container: {
-    flex: 1,
-    padding: '2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '2rem'
-  },
-  formWrapper: {
-    maxWidth: '500px',
-    width: '100%'
-  },
-  input: {
-    flex: 1,
-    padding: '0.75rem',
-    fontSize: '1rem',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    marginRight: '1rem'
-  },
-  button: {
-    padding: '0.75rem 1.5rem',
-    backgroundColor: '#0070f3',
-    color: 'white',
-    border: 'none',
-    borderRadius: '8px',
-    fontWeight: '600',
-    cursor: 'pointer'
-  },
-  trending: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-    gap: '1rem',
-    maxWidth: '800px',
-    width: '100%'
-  },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '1rem',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-    textAlign: 'center'
-  },
-  muted: {
-    color: '#666',
-    fontSize: '0.9rem'
-  },
-  footer: {
-    textAlign: 'center',
-    fontSize: '0.85rem',
-    color: '#666',
-    paddingBottom: '2rem'
-  }
-};
