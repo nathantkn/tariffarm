@@ -1,8 +1,8 @@
-# Tariffarm 
+# TARIFFARM 
 
-an all-in-one assistant for food importers navigating uncertainty in pricing and logistics.<br>
+TARIFFARM is a web-based platform that helps users calculate and visualize the full cost of importing agricultural goods and meat into the U.S.
 
-submission for WildHacks 2025.<br>
+This project was a submission for WildHacks 2025.<br>
 
 [Devpost Link](https://devpost.com/software/idk-yet-o67hj8)
 
@@ -16,17 +16,10 @@ submission for WildHacks 2025.<br>
 
 ## ACKNOWLEDGMENTS
 
-### Libraries, Frameworks, Open-Source Code
+### Libraries, Frameworks, Open-Source Code, APIs
 - NextJS 
 - Lucide Icons
 - Tailwind Styling
 - Commodities API
-MySQL
-
-### LLM 
-Gemini AI API
-
-No art used in this project is chatgpt'ed
-
-
-# Nathan_ships
+- MySQL
+- Gemini AI API
