@@ -3,8 +3,7 @@
 ![Tariffarm Banner](https://via.placeholder.com/1000x200.png?text=Tariffarm+Global+Trade+Dashboard)
 
 **Tariffarm: A powerful tool for visualizing agricultural trade tariffs, costs, and routes with interactive 3D maps.**
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
+ 
 [![Built with Flask](https://img.shields.io/badge/Built%20With-Flask-blue)]()  
 [![Built with React](https://img.shields.io/badge/Built%20With-React-61DAFB)]()  
 [![Deployed on Vercel](https://img.shields.io/badge/Deploy-Vercel-black)]()
