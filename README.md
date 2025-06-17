@@ -42,16 +42,14 @@ It helps smallholder farmers, exporters, and traders to:
 
 ## 🖼 **Screenshots**
 
-### 🌐 Global Dashboard View
-![Global Dashboard](https://via.placeholder.com/800x400.png?text=Global+Dashboard+Screenshot)
+### 🌐 Home Input & Insights
+![Home Input & Insights](./3a1a6cfe-45ca-45cc-98ad-bf238d51810a.png)
 
-### 📊 Trade Route Data Table
-![Data Table](https://via.placeholder.com/800x400.png?text=Data+Table+Screenshot)
+### 🌍 3D Globe with Routes & Table
+![3D Globe with Routes](./28a6b73e-4dcd-4da9-81cc-87c3783776cf.png)
 
-### 🛫 Animated Route Visualization
-![Route Animation](https://via.placeholder.com/800x400.png?text=Route+Animation+Screenshot)
-
-> _Tip: Replace the placeholder links above with actual screenshots of your app for maximum impact._
+### 🛫 Landing Page
+![Landing Page](./38e39743-85f3-4038-95fb-7dd13e0653e7.png)
 
 ---
 
