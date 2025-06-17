@@ -45,10 +45,10 @@ It helps smallholder farmers, exporters, and traders to:
 ![Home Input & Insights](./img1.jpg)
 
 ### 🌍 3D Globe with Routes & Table
-![3D Globe with Routes](./28a6b73e-4dcd-4da9-81cc-87c3783776cf.png)
+![3D Globe with Routes](./img2.jpg)
 
 ### 🛫 Landing Page
-![Landing Page](./38e39743-85f3-4038-95fb-7dd13e0653e7.png)
+![Landing Page](./img3.jpg)
 
 ---
 
