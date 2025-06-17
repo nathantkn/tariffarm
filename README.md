@@ -42,7 +42,7 @@ It helps smallholder farmers, exporters, and traders to:
 ## 🖼 **Screenshots**
 
 ### 🌐 Home Input & Insights
-![Home Input & Insights](./3a1a6cfe-45ca-45cc-98ad-bf238d51810a.png)
+![Home Input & Insights](./img1.jpg)
 
 ### 🌍 3D Globe with Routes & Table
 ![3D Globe with Routes](./28a6b73e-4dcd-4da9-81cc-87c3783776cf.png)
