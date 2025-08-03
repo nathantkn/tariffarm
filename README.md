@@ -1,16 +1,5 @@
 # 🌾 **Tariffarm**
 
-![Tariffarm Banner](https://via.placeholder.com/1000x200.png?text=Tariffarm+Global+Trade+Dashboard)
-
-**Tariffarm: A powerful tool for visualizing agricultural trade tariffs, costs, and routes with interactive 3D maps.**
- 
-[![Built with Flask](https://img.shields.io/badge/Built%20With-Flask-blue)]()  
-[![Built with React](https://img.shields.io/badge/Built%20With-React-61DAFB)]()  
-[![Deployed on Vercel](https://img.shields.io/badge/Deploy-Vercel-black)]()
-
----
-
-## 🚀 **What is Tariffarm?**
 Tariffarm is a web-based platform designed to provide clarity and insight for agricultural trade.  
 It helps smallholder farmers, exporters, and traders to:
 
@@ -20,9 +9,13 @@ It helps smallholder farmers, exporters, and traders to:
 - 💸 Estimate **total cost** and **delivery time**
 - 📊 See **detailed cost breakdowns** for freight, handling, permits, customs
 
+This project was a submission for WildHacks 2025, and won 3rd place overall.<br>
+
+[Devpost Link](https://devpost.com/software/idk-yet-o67hj8)
+
 ---
 
-## ✨ **Key Features**
+## **Key Features**
 ✅ **Secure login with Auth0**  
 ✅ **Protected/private API endpoints**  
 ✅ **Interactive 3D globe (amCharts)**  
@@ -32,27 +25,27 @@ It helps smallholder farmers, exporters, and traders to:
 
 ---
 
-## 🎥 **Demo Video**
-👉 [Watch on YouTube](https://www.youtube.com/watch?v=bZZq8BTu3Vk)
+## **Demo Video**
+[Watch on YouTube](https://www.youtube.com/watch?v=bZZq8BTu3Vk)
 
 [![Tariffarm Demo](https://img.youtube.com/vi/bZZq8BTu3Vk/0.jpg)](https://www.youtube.com/watch?v=bZZq8BTu3Vk)
 
 ---
 
-## 🖼 **Screenshots**
+## **Screenshots**
 
-### 🌐 Home Input & Insights
+### Home Input & Insights
 ![Home Input & Insights](./img1.jpg)
 
-### 🌍 3D Globe with Routes & Table
+### 3D Globe with Routes & Table
 ![3D Globe with Routes](./img2.jpg)
 
-### 🛫 Landing Page
+### Landing Page
 ![Landing Page](./img3.jpg)
 
 ---
 
-## 🛠 **Tech Stack**
+## **Tech Stack**
 | Technology | Purpose |
 |------------|---------|
 | **Python (Flask)** | Backend API + Auth0 integration |
@@ -65,7 +58,7 @@ It helps smallholder farmers, exporters, and traders to:
 
 ---
 
-## ⚡ **New Features**
+## **New Features**
 - 🌟 Dynamic **city node highlighting** on 3D globe
 - 🌟 Animated arrows with **custom airplane SVGs**
 - 🌟 Final result button triggers backend **cost calculation**
@@ -87,3 +80,13 @@ flask run
 cd frontend
 npm install
 npm run dev
+```
+
+---
+
+## Team
+
+- Ayush - Backend
+- Nathan - Frontend
+- Samuel - Fullstack
+- Yamaan - Project Manager and Designer
